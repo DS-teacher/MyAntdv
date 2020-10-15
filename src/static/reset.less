@@ -1,41 +1,180 @@
 @import '~ant-design-vue/dist/antd.less';
 
-//标准白
-@white-color:#ffffff;
+// 标准字号
+@font-size: 14px;
+@font-size-large: 16px;
+@font-size-small: 12px;
+// 标准白
+@white: #ffffff;
 //标准蓝
-@blue-color:#0066ff;
-@blue-color-hover:#3384ff;
-@blue-color-active:#0051cc;
-//按钮、输入框边框
-@border-color:#888888;
-//字体颜色
-@font-color:#333333;
+@blue-6: #0066ff;
+@blue-color-hover: #3384ff;
+@blue-color-active: #0051cc;
+//淡蓝
+@lblue-6: #0099ff;
+@lblue-color-hover: #33adff;
+@lblue-color-active: #007acc;
+//标准红
+@red-6: #cc0000;
+@red-color-hover: #d63333;
+@red-color-active: #a30000;
+//标准棕
+@brown-6: #996600;
+@brown-color-hover: #ad8433;
+@brown-color-active: #7a5100;
+//标准橙
+@orange-6: #ff6633;
+@orange-color-hover: #ff845b;
+@orange-color-active: #cc5128;
+//橘黄金
+@gold-6: #ff9933;
+@gold-color-hover: #ffad5b;
+@gold-color-active: #cc7a28;
+//标准绿
+@green-6: #339900;
+@green-color-hover: #5bad33;
+@green-color-active: #287a00;
+//淡绿
+@lgreen-6: #33cc99;
+@lgreen-color-hover: #5bd6ad;
+@lgreen-color-active: #28a37a;
+//青
+@cyan-6: #009999;
+@cyan-color-hover: #33adad;
+@cyan-color-active: #007a7a;
+// 主色调
+@primary-color: @orange-6;
+@primary-color-hover: @orange-color-hover;
+@primary-color-active: @orange-color-active;
 
-// 按钮样式
+// @primary-color: @blue-6;
+// @primary-color-hover: @blue-color-hover;
+// @primary-color-active: @blue-color-active;
+
+//文字黑
+@text-color: #333333;
+// 次文本色
+@text-color-secondary: #888888;
+// 禁用背景颜色
+@dis-color-back: #eeeeee;
+// 失效色
+@disabled-color: rgba(0, 0, 0, 0.25);
+// 禁用文字、边框颜色
+@disabled-color: #aaaaaa;
+// 边框色
+@border-color-base: #888888; 
+//按钮、输入框边框灰
+@border-color: #888888;
+// 下拉框边框
+@border-color-dropdown: #777777;
+// 浮层阴影
+@box-shadow-base: none;
+
+
+// 基础按钮
 .ant-btn {
-  background: @white-color;
+  font-size: @font-size;
+  background: @white;
   border: 1px solid @border-color;
-  font-family: 'AlibabaPuHuiTi-Regular', 'AlibabaPuHuiTi';
-  color: @font-color;
+  height: 32px;
+  color: @text-color;
+  padding: 0 16px;
 }
 
+// 禁用按钮
+.ant-btn[disabled],
+.ant-btn[disabled]:hover,
+.ant-btn[disabled]:active,
+.ant-btn[disabled]:focus {
+  color: @disabled-color;
+  background-color: @dis-color-back;
+  border-color: @disabled-color;
+}
+
+// 大按钮
+.ant-btn-lg {
+  height: 40px;
+  font-size: @font-size-large;
+  padding: 0 24px;
+}
+
+// 小按钮
+.ant-btn-sm {
+  height: 24px;
+  font-size: @font-size-small;
+  padding: 0 12px;
+}
+
+// 按钮悬浮
 .ant-btn:hover {
-  color: @blue-color;
-  border-color: @blue-color;
+  color: @primary-6;
+  border-color: @primary-6;
 }
 
+// 按钮点击
+.ant-btn:active,
+.ant-btn-primary:focus {
+  color: @primary-color-active;
+  border-color: @primary-color-active;
+}
+
+//主按钮
 .ant-btn-primary {
-  background: @blue-color;
-  color: @white-color;
-  border-color: @blue-color;
+  color: @white;
+  background: @primary-6;
+  border-color: @primary-6;
 }
 
-.ant-btn-primary:hover,.ant-btn-primary:focus {
-  background: @blue-color-hover;
-  color: @white-color;
+// 主按钮悬浮
+.ant-btn-primary:hover {
+  color: @white;
+  background: @primary-color-hover;
+  border-color: @primary-color-hover;
 }
 
-.ant-btn-primary:active {
-  background: @blue-color-active;
-  color: @white-color;
+// 主按钮点击
+.ant-btn-primary:active,
+.ant-btn-primary:focus {
+  color: @white;
+  background: @primary-color-active;
+  border-color: @primary-color-active;
+}
+
+// 链接按钮
+.ant-btn-link {
+  color: @primary-6;
+  border: none;
+}
+
+// 图标按钮
+.ant-btn-icon-only {
+  padding: 0;
+}
+
+// 下拉框
+.ant-dropdown-menu,
+.ant-select-dropdown-menu {
+  border: 1px solid @border-color-dropdown;
+  border-radius: 4px;
+  color: @text-color;
+}
+
+// 下拉框文字
+.ant-dropdown-menu-item {
+  color: @text-color;
+}
+
+// 下拉框选中文字背景
+.ant-dropdown-menu-item:hover {
+  background-color: fade(@primary-6, 10%);
+}
+
+// 面包屑
+.ant-breadcrumb {
+
+  // 面包屑子目录
+  >span:last-child {
+    font-size: @font-size-large;
+    color: @primary-6;
+  }
 }
