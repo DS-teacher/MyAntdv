@@ -1,0 +1,41 @@
+@import '~ant-design-vue/dist/antd.less';
+
+//标准白
+@white-color:#ffffff;
+//标准蓝
+@blue-color:#0066ff;
+@blue-color-hover:#3384ff;
+@blue-color-active:#0051cc;
+//按钮、输入框边框
+@border-color:#888888;
+//字体颜色
+@font-color:#333333;
+
+// 按钮样式
+.ant-btn {
+  background: @white-color;
+  border: 1px solid @border-color;
+  font-family: 'AlibabaPuHuiTi-Regular', 'AlibabaPuHuiTi';
+  color: @font-color;
+}
+
+.ant-btn:hover {
+  color: @blue-color;
+  border-color: @blue-color;
+}
+
+.ant-btn-primary {
+  background: @blue-color;
+  color: @white-color;
+  border-color: @blue-color;
+}
+
+.ant-btn-primary:hover,.ant-btn-primary:focus {
+  background: @blue-color-hover;
+  color: @white-color;
+}
+
+.ant-btn-primary:active {
+  background: @blue-color-active;
+  color: @white-color;
+}
