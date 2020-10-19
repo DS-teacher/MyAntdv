@@ -1,7 +1,7 @@
 <template>
   <a-layout id="components-layout-demo-top" class="layout">
     <a-layout-header>
-      <a-menu theme="dark" mode="horizontal" :defaultSelectedKeys="['2']" :style="{ lineHeight: '64px' }">
+      <a-menu theme="dark" mode="horizontal" :defaultSelectedKeys="['2']" style=" text-align: center; line-height: 64px">
         <a-menu-item key="1">nav 1</a-menu-item>
         <a-menu-item key="2">nav 2</a-menu-item>
         <a-menu-item key="3">nav 3</a-menu-item>
@@ -165,11 +165,10 @@
           <!-- 分页组件 -->
           <a-space>
             分页组件：
-            <a-pagination show-quick-jumper :default-current="2" :total="500" @change="onChange" />
+            <a-pagination show-quick-jumper :default-current="2" :total="500" />
           </a-space>
           <a-space>
-            <a-pagination show-quick-jumper :default-current="2" :total="500" disabled show-less-items
-              @change="onChange" />
+            <a-pagination show-quick-jumper :default-current="2" :total="500" disabled show-less-items />
           </a-space>
           <!-- 步骤条组件 -->
           <a-space>
@@ -246,7 +245,7 @@
                 <a-select v-decorator="[
                     'gender',
                     { rules: [{ required: true, message: 'Please select your gender!' }] },
-                  ]" placeholder="Select a option and change input text above" @change="handleSelectChange">
+                  ]" placeholder="Select a option and change input text above">
                   <a-select-option value="male">
                     male
                   </a-select-option>
@@ -269,6 +268,7 @@
           </a-space>
           <!-- 树选择组件 -->
           <a-space>
+            树选择组件:
             <a-tree-select v-model="value" show-search style="width: 200px"
               :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }" placeholder="Please select" allow-clear
               tree-default-expand-all>
@@ -287,12 +287,25 @@
           </a-space>
           <!-- 穿梭框组件 -->
           <a-sapce>
+            穿梭框组件:
             <a-transfer :data-source="mockData" :titles="['Source', 'Target']" :target-keys="targetKeys"
-              :selected-keys="selectedKeys" :render="item => item.title" :disabled="disabled" @change="handleChange"
+              :selected-keys="selectedKeys" :render="item => item.title" :disabled="disabled"
               @selectChange="handleSelectChange" @scroll="handleScroll" />
             <a-switch un-checked-children="enabled" checked-children="disabled" :checked="disabled"
-              style="margin-top: 16px" @change="handleDisable" />
+              style="margin-top: 16px" />
           </a-sapce>
+          <!-- 折叠面板组件 -->
+          <a-space>
+            折叠面板组件:
+            <a-collapse default-active-key="1">
+              <a-collapse-panel key="1" header="This is panel header with arrow icon">
+                <p>{{ text }}</p>
+              </a-collapse-panel>
+              <a-collapse-panel key="2" header="This is panel header with no arrow icon" :show-arrow="false">
+                <p>{{ text }}</p>
+              </a-collapse-panel>
+            </a-collapse>
+          </a-space>
         </a-space>
       </div>
     </a-layout-content>
@@ -310,6 +323,8 @@
   const IconFont = Icon.createFromIconfontCN({
     scriptUrl: "//at.alicdn.com/t/font_1389343_piwa5v5qoj.js"
   });
+
+
   export default {
     components: {
       IconFont
@@ -359,8 +374,11 @@
         targetKeys: oriTargetKeys,
         selectedKeys: ['1', '4'],
         disabled: false,
+        text: `20201019 16:55 折叠面板组件`,
       };
     },
+
+
     methods: {
       handleChange(nextTargetKeys, direction, moveKeys) {
         this.targetKeys = nextTargetKeys;
