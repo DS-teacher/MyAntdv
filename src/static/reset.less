@@ -1,9 +1,9 @@
 @import '~ant-design-vue/dist/antd.less';
 
-// 标准字号
-@font-size: 14px;
-@font-size-large: 16px;
-@font-size-small: 12px;
+// 字号
+@font-size-base: 14px;
+@font-size-lg: @font-size-base + 2px;
+@font-size-sm: 12px;
 // 标准白
 @white: #ffffff;
 //标准蓝
@@ -42,6 +42,7 @@
 @cyan-6: #009999;
 @cyan-color-hover: #33adad;
 @cyan-color-active: #007a7a;
+
 // 主色调
 @primary-color: @orange-6;
 @primary-color-hover: @orange-color-hover;
@@ -62,7 +63,7 @@
 // 禁用文字、边框颜色
 @disabled-color: #aaaaaa;
 // 边框色
-@border-color-base: #888888; 
+@border-color-base: #888888;
 //按钮、输入框边框灰
 @border-color: #888888;
 // 下拉框边框
@@ -70,10 +71,9 @@
 // 浮层阴影
 @box-shadow-base: none;
 
-
 // 基础按钮
 .ant-btn {
-  font-size: @font-size;
+  font-size: @font-size-base;
   background: @white;
   border: 1px solid @border-color;
   height: 32px;
@@ -94,26 +94,26 @@
 // 大按钮
 .ant-btn-lg {
   height: 40px;
-  font-size: @font-size-large;
+  font-size: @font-size-lg;
   padding: 0 24px;
 }
 
 // 小按钮
 .ant-btn-sm {
   height: 24px;
-  font-size: @font-size-small;
+  font-size: @font-size-sm;
   padding: 0 12px;
 }
 
 // 按钮悬浮
-.ant-btn:hover {
+.ant-btn:hover,
+.ant-btn:focus {
   color: @primary-6;
   border-color: @primary-6;
 }
 
 // 按钮点击
-.ant-btn:active,
-.ant-btn-primary:focus {
+.ant-btn-primary:active {
   color: @primary-color-active;
   border-color: @primary-color-active;
 }
@@ -126,15 +126,15 @@
 }
 
 // 主按钮悬浮
-.ant-btn-primary:hover {
+.ant-btn-primary:hover,
+.ant-btn-primary:focus, {
   color: @white;
   background: @primary-color-hover;
   border-color: @primary-color-hover;
 }
 
 // 主按钮点击
-.ant-btn-primary:active,
-.ant-btn-primary:focus {
+.ant-btn-primary:active {
   color: @white;
   background: @primary-color-active;
   border-color: @primary-color-active;
@@ -174,7 +174,7 @@
 
   // 面包屑子目录
   >span:last-child {
-    font-size: @font-size-large;
+    font-size: @font-size-lg;
     color: @primary-6;
   }
 }
