@@ -1,7 +1,8 @@
 <template>
   <a-layout id="components-layout-demo-top" class="layout">
     <a-layout-header>
-      <a-menu theme="dark" mode="horizontal" :defaultSelectedKeys="['2']" style=" text-align: center; line-height: 64px">
+      <a-menu theme="dark" mode="horizontal" :defaultSelectedKeys="['2']"
+        style=" text-align: center; line-height: 64px">
         <a-menu-item key="1">nav 1</a-menu-item>
         <a-menu-item key="2">nav 2</a-menu-item>
         <a-menu-item key="3">nav 3</a-menu-item>
@@ -239,12 +240,26 @@
             表单组件：
             <a-form :form="form" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }" @submit="handleSubmit">
               <a-form-item label="Note">
-                <a-input v-decorator="['note', { rules: [{ required: true, message: 'Please input your note!' }] }]" />
+                <a-input v-decorator="[
+                    'note',
+                    {
+                      rules: [
+                        { required: true, message: 'Please input your note!' }
+                      ]
+                    }
+                  ]" />
               </a-form-item>
               <a-form-item label="Gender">
                 <a-select v-decorator="[
                     'gender',
-                    { rules: [{ required: true, message: 'Please select your gender!' }] },
+                    {
+                      rules: [
+                        {
+                          required: true,
+                          message: 'Please select your gender!'
+                        }
+                      ]
+                    }
                   ]" placeholder="Select a option and change input text above">
                   <a-select-option value="male">
                     male
@@ -306,6 +321,94 @@
               </a-collapse-panel>
             </a-collapse>
           </a-space>
+          <!-- 卡片组件 -->
+          <a-space>
+            卡片组件：
+            <a-card title="卡片组件" hoverable style="width: 300px">
+              <a slot="extra" href="#">more</a>
+              <p>card content</p>
+              <p>card content</p>
+              <p>card content</p>
+            </a-card>
+          </a-space>
+          <!-- 描述列表组件 -->
+          <a-space>
+            描述列表组件：
+            <a-descriptions title="描述列表组件" bordered>
+              <a-descriptions-item label="UserName">
+                Zhou Maomao
+              </a-descriptions-item>
+              <a-descriptions-item label="Telephone">
+                1810000000
+              </a-descriptions-item>
+              <a-descriptions-item label="Live">
+                Hangzhou, Zhejiang
+              </a-descriptions-item>
+              <a-descriptions-item label="Remark">
+                empty
+              </a-descriptions-item>
+              <a-descriptions-item label="Address">
+                No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+              </a-descriptions-item>
+            </a-descriptions>
+          </a-space>
+          <!-- 气泡确认框组件 -->
+          <a-space>
+            气泡确认框组件：
+            <a-popconfirm title="Are you sure delete this task?" ok-text="Yes" cancel-text="No" @confirm="confirm"
+              @cancel="cancel">
+              <a href="#">Delete</a>
+            </a-popconfirm>
+          </a-space>
+          <!-- 标签组件 -->
+          <a-space>
+            标签组件：
+            <a-tag>Tag 1</a-tag>
+            <a-tag><a href="/">Link</a></a-tag>
+            <a-tag closable>
+              Tag 2
+            </a-tag>
+            <a-tag closable>
+              Prevent Default
+            </a-tag>
+          </a-space>
+          <!-- 警告提示组件 -->
+          <a-space>
+            警告提示组件：
+            <a-alert message="Success Tips" description="Detailed description and advices about successful copywriting."
+              type="success" show-icon />
+            <a-alert message="Informational Notes"
+              description="Additional description and informations about copywriting." type="info" show-icon />
+            <a-alert message="Warning" description="This is a warning notice about copywriting." type="warning"
+              show-icon />
+            <a-alert message="Error" description="This is an error message about copywriting." type="error" show-icon />
+          </a-space>
+          <!-- 抽屉组件 -->
+          <a-space>
+            抽屉组件：
+            <a-radio-group style="margin-right: 8px" :default-value="placement" @change="onChange">
+              <a-radio value="top">
+                top
+              </a-radio>
+              <a-radio value="right">
+                right
+              </a-radio>
+              <a-radio value="bottom">
+                bottom
+              </a-radio>
+              <a-radio value="left">
+                left
+              </a-radio>
+            </a-radio-group>
+            <a-button type="primary" @click="showDrawer">
+              Open
+            </a-button>
+            <a-drawer title="Basic Drawer" :placement="placement" :closable="false" :visible="visible" @close="onClose">
+              <p>Some contents...</p>
+              <p>Some contents...</p>
+              <p>Some contents...</p>
+            </a-drawer>
+          </a-space>
         </a-space>
       </div>
     </a-layout-content>
@@ -324,7 +427,6 @@
     scriptUrl: "//at.alicdn.com/t/font_1389343_piwa5v5qoj.js"
   });
 
-
   export default {
     components: {
       IconFont
@@ -336,69 +438,87 @@
           key: i.toString(),
           title: `content${i + 1}`,
           description: `description of content${i + 1}`,
-          disabled: i % 3 < 1,
+          disabled: i % 3 < 1
         });
       }
 
-      const oriTargetKeys = mockData.filter(item => +item.key % 3 > 1).map(item => item.key);
+      const oriTargetKeys = mockData
+        .filter(item => +item.key % 3 > 1)
+        .map(item => item.key);
       return {
         size: "middle",
         options: [{
-            value: 'zhejiang',
-            label: 'Zhejiang',
+            value: "zhejiang",
+            label: "Zhejiang",
             children: [{
-              value: 'hangzhou',
-              label: 'Hangzhou',
+              value: "hangzhou",
+              label: "Hangzhou",
               children: [{
-                value: 'xihu',
-                label: 'West Lake',
-              }, ],
-            }, ],
+                value: "xihu",
+                label: "West Lake"
+              }]
+            }]
           },
           {
-            value: 'jiangsu',
-            label: 'Jiangsu',
+            value: "jiangsu",
+            label: "Jiangsu",
             children: [{
-              value: 'nanjing',
-              label: 'Nanjing',
+              value: "nanjing",
+              label: "Nanjing",
               children: [{
-                value: 'zhonghuamen',
-                label: 'Zhong Hua Men',
-              }, ],
-            }, ],
-          },
+                value: "zhonghuamen",
+                label: "Zhong Hua Men"
+              }]
+            }]
+          }
         ],
         treeExpandedKeys: [],
         value: undefined,
         mockData,
         targetKeys: oriTargetKeys,
-        selectedKeys: ['1', '4'],
+        selectedKeys: ["1", "4"],
         disabled: false,
         text: `20201019 16:55 折叠面板组件`,
+        visible: false,
+        placement: 'left',
       };
     },
-
 
     methods: {
       handleChange(nextTargetKeys, direction, moveKeys) {
         this.targetKeys = nextTargetKeys;
 
-        console.log('targetKeys: ', nextTargetKeys);
-        console.log('direction: ', direction);
-        console.log('moveKeys: ', moveKeys);
+        console.log("targetKeys: ", nextTargetKeys);
+        console.log("direction: ", direction);
+        console.log("moveKeys: ", moveKeys);
       },
       handleSelectChange(sourceSelectedKeys, targetSelectedKeys) {
         this.selectedKeys = [...sourceSelectedKeys, ...targetSelectedKeys];
 
-        console.log('sourceSelectedKeys: ', sourceSelectedKeys);
-        console.log('targetSelectedKeys: ', targetSelectedKeys);
+        console.log("sourceSelectedKeys: ", sourceSelectedKeys);
+        console.log("targetSelectedKeys: ", targetSelectedKeys);
       },
       handleScroll(direction, e) {
-        console.log('direction:', direction);
-        console.log('target:', e.target);
+        console.log("direction:", direction);
+        console.log("target:", e.target);
       },
       handleDisable(disabled) {
         this.disabled = disabled;
+      },
+      confirm(e) {
+        this.$message.success('Click on Yes');
+      },
+      cancel(e) {
+        this.$message.error('Click on No');
+      },
+      showDrawer() {
+        this.visible = true;
+      },
+      onClose() {
+        this.visible = false;
+      },
+      onChange(e) {
+        this.placement = e.target.value;
       },
     }
   };
