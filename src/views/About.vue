@@ -444,6 +444,32 @@
               </a-tab-pane>
             </a-tabs>
           </a-space>
+          <!-- 弹窗组件 -->
+          <a-space>
+            弹窗组件：
+            <a-button type="primary" @click="showModal">
+              Open Modal
+            </a-button>
+            <a-modal :visible="visible2" title="Basic Modal" @ok="handleOk">
+              <p>Some contents...</p>
+              <p>Some contents...</p>
+              <p>Some contents...</p>
+            </a-modal>
+          </a-space>
+          <!-- 文字提醒组件 -->
+          <a-space>
+            文字提醒组件：
+            <a-tooltip>
+              <template slot="title">
+                prompt text
+              </template>
+              Tooltip will show when mouse enter.
+            </a-tooltip>
+          </a-space>
+          <!-- 表格组件 -->
+          <a-space>
+            表格组件：
+          </a-space>
         </a-space>
       </div>
     </a-layout-content>
@@ -530,6 +556,7 @@
         activeKey: panes[0].key,
         panes,
         newTabIndex: 0,
+        visible2:false,
       };
     },
 
@@ -596,6 +623,12 @@
         }
         this.panes = panes;
         this.activeKey = activeKey;
+      },
+      showModal() {
+        this.visible2 = true;
+      },
+      handleOk(e) {
+        this.visible2 = false;
       },
     }
   };
