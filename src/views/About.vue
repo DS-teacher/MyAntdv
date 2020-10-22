@@ -409,6 +409,41 @@
               <p>Some contents...</p>
             </a-drawer>
           </a-space>
+          <!-- 加载中组件 -->
+          <a-space>
+            加载中组件：
+            <a-spin :size="size" />
+          </a-space>
+          <!-- 通知提醒组件 -->
+          <a-space>
+            通知提醒组件：
+            <a-button @click="() => openNotificationWithIcon('success')">
+              Success
+            </a-button>
+            <a-button @click="() => openNotificationWithIcon('info')">
+              Info
+            </a-button>
+            <a-button @click="() => openNotificationWithIcon('warning')">
+              Warning
+            </a-button>
+            <a-button @click="() => openNotificationWithIcon('error')">
+              Error
+            </a-button>
+          </a-space>
+          <!-- 页签组件 -->
+          <a-space>
+            页签组件：
+            <div :style="{ marginBottom: '16px' }">
+              <a-button @click="add">
+                ADD
+              </a-button>
+            </div>
+            <a-tabs v-model="activeKey" hide-add type="editable-card" @edit="onEdit">
+              <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title" :closable="pane.closable">
+                {{ pane.content }}
+              </a-tab-pane>
+            </a-tabs>
+          </a-space>
         </a-space>
       </div>
     </a-layout-content>
@@ -445,6 +480,17 @@
       const oriTargetKeys = mockData
         .filter(item => +item.key % 3 > 1)
         .map(item => item.key);
+      const panes = [{
+          title: 'Tab 1',
+          content: 'Content of Tab 1',
+          key: '1'
+        },
+        {
+          title: 'Tab 2',
+          content: 'Content of Tab 2',
+          key: '2'
+        },
+      ];
       return {
         size: "middle",
         options: [{
@@ -481,26 +527,18 @@
         text: `20201019 16:55 折叠面板组件`,
         visible: false,
         placement: 'left',
+        activeKey: panes[0].key,
+        panes,
+        newTabIndex: 0,
       };
     },
 
     methods: {
       handleChange(nextTargetKeys, direction, moveKeys) {
         this.targetKeys = nextTargetKeys;
-
-        console.log("targetKeys: ", nextTargetKeys);
-        console.log("direction: ", direction);
-        console.log("moveKeys: ", moveKeys);
       },
       handleSelectChange(sourceSelectedKeys, targetSelectedKeys) {
         this.selectedKeys = [...sourceSelectedKeys, ...targetSelectedKeys];
-
-        console.log("sourceSelectedKeys: ", sourceSelectedKeys);
-        console.log("targetSelectedKeys: ", targetSelectedKeys);
-      },
-      handleScroll(direction, e) {
-        console.log("direction:", direction);
-        console.log("target:", e.target);
       },
       handleDisable(disabled) {
         this.disabled = disabled;
@@ -519,6 +557,45 @@
       },
       onChange(e) {
         this.placement = e.target.value;
+      },
+      openNotificationWithIcon(type) {
+        this.$notification[type]({
+          message: 'Notification Title',
+          description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+        });
+      },
+      onEdit(targetKey, action) {
+        this[action](targetKey);
+      },
+      add() {
+        const panes = this.panes;
+        const activeKey = `newTab${this.newTabIndex++}`;
+        panes.push({
+          title: `New Tab ${activeKey}`,
+          content: `Content of new Tab ${activeKey}`,
+          key: activeKey,
+        });
+        this.panes = panes;
+        this.activeKey = activeKey;
+      },
+      remove(targetKey) {
+        let activeKey = this.activeKey;
+        let lastIndex;
+        this.panes.forEach((pane, i) => {
+          if (pane.key === targetKey) {
+            lastIndex = i - 1;
+          }
+        });
+        const panes = this.panes.filter(pane => pane.key !== targetKey);
+        if (panes.length && activeKey === targetKey) {
+          if (lastIndex >= 0) {
+            activeKey = panes[lastIndex].key;
+          } else {
+            activeKey = panes[0].key;
+          }
+        }
+        this.panes = panes;
+        this.activeKey = activeKey;
       },
     }
   };
