@@ -1,4 +1,4 @@
-# vue-examples1
+# 根据用友UI规范2.0修改antdv组件样式
 
 ## Project setup
 ```
@@ -20,5 +20,5 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 根据用友UI规范2.0修改antdv组件样式主要文件
+src->static->reset.less
