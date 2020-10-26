@@ -312,7 +312,7 @@
           <!-- 折叠面板组件 -->
           <a-space>
             折叠面板组件:
-            <a-collapse default-active-key="1">
+            <a-collapse default-active-key="1" :expand-icon-position="right">
               <a-collapse-panel key="1" header="This is panel header with arrow icon">
                 <p>{{ text }}</p>
               </a-collapse-panel>
@@ -450,7 +450,7 @@
             <a-button type="primary" @click="showModal">
               Open Modal
             </a-button>
-            <a-modal :visible="visible2" title="Basic Modal" @ok="handleOk">
+            <a-modal :visible="visibleM" title="Basic Modal" @ok="handleOk">
               <p>Some contents...</p>
               <p>Some contents...</p>
               <p>Some contents...</p>
@@ -556,7 +556,7 @@
         activeKey: panes[0].key,
         panes,
         newTabIndex: 0,
-        visible2:false,
+        visibleM:false,
       };
     },
 
@@ -625,10 +625,10 @@
         this.activeKey = activeKey;
       },
       showModal() {
-        this.visible2 = true;
+        this.visibleM = true;
       },
       handleOk(e) {
-        this.visible2 = false;
+        this.visibleM = false;
       },
     }
   };
