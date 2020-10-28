@@ -147,87 +147,62 @@
               </a-menu>
             </a-dropdown>
             下拉菜单：
-            <a-select default-value="1" style="width: 120px">
+            <a-select default-value="1" style="width: 120px" :size="size">
               <icon-font slot="suffixIcon" type="iconxia" />
               <a-select-option value="1">
-                Jack
+                选项一
               </a-select-option>
               <a-select-option value="2">
-                Lucy
+                选项二
               </a-select-option>
               <a-select-option value="3" disabled>
-                Disabled
+                禁用选项
               </a-select-option>
               <a-select-option value="4">
-                yiminghe
+                选项四
               </a-select-option>
             </a-select>
           </a-space>
           <!-- 分页组件 -->
           <a-space>
             分页组件：
-            <a-pagination show-quick-jumper :default-current="2" :total="500" />
+            <a-pagination show-quick-jumper :default-current="2" :total="500" :size="size" />
           </a-space>
           <a-space>
-            <a-pagination show-quick-jumper :default-current="2" :total="500" disabled show-less-items />
+            <a-pagination show-quick-jumper :default-current="2" :total="500" :size="size" disabled show-less-items />
           </a-space>
           <!-- 步骤条组件 -->
           <a-space>
             步骤条组件：
-            <a-steps :current="1">
+            <a-steps :current="1" style="width: 550px;" :size="size">
               <a-step>
                 <!-- <span slot="title">Finished</span> -->
                 <template slot="title">
-                  Finished
+                  已完成步骤
                 </template>
-                <span slot="description">This is a description.</span>
+                <span slot="description">说明性文字</span>
               </a-step>
-              <a-step title="In Progress" description="This is a description." />
-              <a-step title="Waiting" description="This is a description." />
+              <a-step title="当前步骤效果" description="说明性文字" />
+              <a-step title="未完成步骤效果" description="说明性文字" />
             </a-steps>
-            <a-steps direction="vertical" :current="1">
-              <a-step title="Finished" description="This is a description." />
-              <a-step title="In Progress" description="This is a description." />
-              <a-step title="Waiting" description="This is a description." />
+            <a-steps direction="vertical" :current="1" :size="size">
+              <a-step title="已完成步骤" description="说明性文字" />
+              <a-step title="当前步骤效果" description="说明性文字" />
+              <a-step title="未完成步骤效果" description="说明性文字" />
             </a-steps>
           </a-space>
           <!-- 多选组件 -->
           <a-space>
             多选组件：
-            <a-checkbox-group>
-              <a-row>
-                <a-col :span="8">
-                  <a-checkbox value="A">
-                    A
-                  </a-checkbox>
-                </a-col>
-                <a-col :span="8">
-                  <a-checkbox value="B">
-                    B
-                  </a-checkbox>
-                </a-col>
-                <a-col :span="8">
-                  <a-checkbox value="C">
-                    C
-                  </a-checkbox>
-                </a-col>
-                <a-col :span="8">
-                  <a-checkbox value="D">
-                    D
-                  </a-checkbox>
-                </a-col>
-                <a-col :span="8">
-                  <a-checkbox value="E">
-                    E
-                  </a-checkbox>
-                </a-col>
-              </a-row>
-            </a-checkbox-group>
+            <a-checkbox :indeterminate="indeterminate" :checked="checkAll" @change="onCheckAllChange">
+              全选
+            </a-checkbox>
+            <a-checkbox-group v-model="checkedList" :options="plainOptions" @change="onChangeC" />
           </a-space>
           <!-- 级联选择组件 -->
           <a-space>
             级联选择组件：
-            <a-cascader :options="options" placeholder="Please select" />
+            <a-cascader :options="options" placeholder="选择选项" />
           </a-space>
           <!-- 日期选择组件 -->
           <a-space>
@@ -388,25 +363,23 @@
             抽屉组件：
             <a-radio-group style="margin-right: 8px" :default-value="placement" @change="onChange">
               <a-radio value="top">
-                top
+                顶部
               </a-radio>
               <a-radio value="right">
-                right
+                右边
               </a-radio>
               <a-radio value="bottom">
-                bottom
+                底部
               </a-radio>
               <a-radio value="left">
-                left
+                左边
               </a-radio>
             </a-radio-group>
             <a-button type="primary" @click="showDrawer">
-              Open
+              打开抽屉
             </a-button>
-            <a-drawer title="Basic Drawer" :placement="placement" :closable="false" :visible="visible" @close="onClose">
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
+            <a-drawer title="抽屉组件标题" :placement="placement" :closable="false" :visible="visible" @close="onClose">
+              这里是抽屉组件，我是被秃头程序员写来凑字数的，你看我这么随意就写了三十六个字。
             </a-drawer>
           </a-space>
           <!-- 加载中组件 -->
@@ -418,16 +391,16 @@
           <a-space>
             通知提醒组件：
             <a-button @click="() => openNotificationWithIcon('success')">
-              Success
+              成功
             </a-button>
             <a-button @click="() => openNotificationWithIcon('info')">
-              Info
+              提示
             </a-button>
             <a-button @click="() => openNotificationWithIcon('warning')">
-              Warning
+              警告·
             </a-button>
             <a-button @click="() => openNotificationWithIcon('error')">
-              Error
+              错误
             </a-button>
           </a-space>
           <!-- 页签组件 -->
@@ -435,7 +408,7 @@
             页签组件：
             <div :style="{ marginBottom: '16px' }">
               <a-button @click="add">
-                ADD
+                增加一个
               </a-button>
             </div>
             <a-tabs v-model="activeKey" hide-add type="editable-card" @edit="onEdit">
@@ -448,12 +421,10 @@
           <a-space>
             弹窗组件：
             <a-button type="primary" @click="showModal">
-              Open Modal
+              打开弹窗
             </a-button>
-            <a-modal :visible="visibleM" title="Basic Modal" @ok="handleOk">
-              <p>Some contents...</p>
-              <p>Some contents...</p>
-              <p>Some contents...</p>
+            <a-modal :visible="visibleM" title="弹窗标题" @ok="handleOk">
+              这里是弹窗组件，我是被秃头程序员写来凑字数的，你看我这么随意就写了三十六个字。
             </a-modal>
           </a-space>
           <!-- 文字提醒组件 -->
@@ -461,9 +432,9 @@
             文字提醒组件：
             <a-tooltip>
               <template slot="title">
-                prompt text
+                我是提醒文字
               </template>
-              Tooltip will show when mouse enter.
+              把鼠标悬浮过来，这里有文字提醒
             </a-tooltip>
           </a-space>
           <!-- 表格组件 -->
@@ -487,7 +458,8 @@
   const IconFont = Icon.createFromIconfontCN({
     scriptUrl: "//at.alicdn.com/t/font_1389343_piwa5v5qoj.js"
   });
-
+  const plainOptions = ['选项一', '选项二', '选项三'];
+  const defaultCheckedList = ['选项一', '选项三'];
   export default {
     components: {
       IconFont
@@ -507,39 +479,39 @@
         .filter(item => +item.key % 3 > 1)
         .map(item => item.key);
       const panes = [{
-          title: 'Tab 1',
-          content: 'Content of Tab 1',
+          title: '页面当前效果',
+          content: '页面当前内容',
           key: '1'
         },
         {
-          title: 'Tab 2',
-          content: 'Content of Tab 2',
+          title: '页面二',
+          content: '页面当前内容',
           key: '2'
         },
       ];
       return {
         size: "middle",
         options: [{
-            value: "zhejiang",
-            label: "Zhejiang",
+            value: "浙江",
+            label: "浙江",
             children: [{
-              value: "hangzhou",
-              label: "Hangzhou",
+              value: "杭州",
+              label: "杭州",
               children: [{
-                value: "xihu",
-                label: "West Lake"
+                value: "西湖",
+                label: "西湖"
               }]
             }]
           },
           {
-            value: "jiangsu",
-            label: "Jiangsu",
+            value: "江苏",
+            label: "江苏",
             children: [{
-              value: "nanjing",
-              label: "Nanjing",
+              value: "南京",
+              label: "南京",
               children: [{
-                value: "zhonghuamen",
-                label: "Zhong Hua Men"
+                value: "中华门",
+                label: "中华门"
               }]
             }]
           }
@@ -556,7 +528,11 @@
         activeKey: panes[0].key,
         panes,
         newTabIndex: 0,
-        visibleM:false,
+        visibleM: false,
+        checkedList: defaultCheckedList,
+        indeterminate: true,
+        checkAll: false,
+        plainOptions,
       };
     },
 
@@ -571,10 +547,10 @@
         this.disabled = disabled;
       },
       confirm(e) {
-        this.$message.success('Click on Yes');
+        this.$message.success('选择：是');
       },
       cancel(e) {
-        this.$message.error('Click on No');
+        this.$message.error('选择：否');
       },
       showDrawer() {
         this.visible = true;
@@ -587,8 +563,8 @@
       },
       openNotificationWithIcon(type) {
         this.$notification[type]({
-          message: 'Notification Title',
-          description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+          message: '通知标题',
+          description: '这里是内容',
         });
       },
       onEdit(targetKey, action) {
@@ -596,10 +572,10 @@
       },
       add() {
         const panes = this.panes;
-        const activeKey = `newTab${this.newTabIndex++}`;
+        const activeKey = `${this.newTabIndex++}`;
         panes.push({
-          title: `New Tab ${activeKey}`,
-          content: `Content of new Tab ${activeKey}`,
+          title: `第${activeKey}个新标题`,
+          content: `第${activeKey}个新界面`,
           key: activeKey,
         });
         this.panes = panes;
@@ -629,6 +605,17 @@
       },
       handleOk(e) {
         this.visibleM = false;
+      },
+      onChangeC(checkedList) {
+        this.indeterminate = !!checkedList.length && checkedList.length < plainOptions.length;
+        this.checkAll = checkedList.length === plainOptions.length;
+      },
+      onCheckAllChange(e) {
+        Object.assign(this, {
+          checkedList: e.target.checked ? plainOptions : [],
+          indeterminate: false,
+          checkAll: e.target.checked,
+        });
       },
     }
   };
