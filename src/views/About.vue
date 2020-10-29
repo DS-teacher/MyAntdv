@@ -259,21 +259,8 @@
           <!-- 树选择组件 -->
           <a-space>
             树选择组件:
-            <a-tree-select v-model="value" show-search style="width: 200px"
-              :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }" placeholder="Please select" allow-clear
-              tree-default-expand-all>
-              <a-tree-select-node key="0-1" value="parent 1" title="parent 1">
-                <a-tree-select-node key="0-1-1" value="parent 1-0" title="parent 1-0">
-                  <a-tree-select-node key="random" :selectable="false" value="leaf1" title="my leaf" />
-                  <a-tree-select-node key="random1" value="leaf2" title="your leaf" />
-                </a-tree-select-node>
-                <a-tree-select-node key="random2" value="parent 1-1" title="parent 1-1">
-                  <a-tree-select-node key="random3" value="sss">
-                    <b slot="title" style="color: #08c">sss</b>
-                  </a-tree-select-node>
-                </a-tree-select-node>
-              </a-tree-select-node>
-            </a-tree-select>
+            <a-tree v-model="checkedKeys" checkable :expanded-keys="expandedKeys" :auto-expand-parent="autoExpandParent"
+              :selected-keys="selectedKeysN" :tree-data="treeData" @expand="onExpand" @select="onSelect" />
           </a-space>
           <!-- 穿梭框组件 -->
           <a-sapce>
@@ -328,8 +315,7 @@
           <!-- 气泡确认框组件 -->
           <a-space>
             气泡确认框组件：
-            <a-popconfirm title="确定删除吗？" ok-text="是" cancel-text="否" @confirm="confirm"
-              @cancel="cancel">
+            <a-popconfirm title="确定删除吗？" ok-text="是" cancel-text="否" @confirm="confirm" @cancel="cancel">
               <a href="#">删除</a>
             </a-popconfirm>
           </a-space>
@@ -345,12 +331,9 @@
           <!-- 警告提示组件 -->
           <a-space>
             警告提示组件：
-            <a-alert message="成功" description="这是成功提示"
-              type="success" show-icon />
-            <a-alert message="提示"
-              description="这是信息提示" type="info" show-icon />
-            <a-alert message="警告" description="这是警告提示" type="warning"
-              show-icon />
+            <a-alert message="成功" description="这是成功提示" type="success" show-icon />
+            <a-alert message="提示" description="这是信息提示" type="info" show-icon />
+            <a-alert message="警告" description="这是警告提示" type="warning" show-icon />
             <a-alert message="错误" description="这是错误提示" type="error" show-icon />
           </a-space>
           <!-- 抽屉组件 -->
@@ -455,6 +438,71 @@
   });
   const plainOptions = ['选项一', '选项二', '选项三'];
   const defaultCheckedList = ['选项一', '选项三'];
+  const treeData = [{
+      title: '0-0',
+      key: '0-0',
+      children: [{
+          title: '0-0-0',
+          key: '0-0-0',
+          children: [{
+              title: '0-0-0-0',
+              key: '0-0-0-0'
+            },
+            {
+              title: '0-0-0-1',
+              key: '0-0-0-1'
+            },
+            {
+              title: '0-0-0-2',
+              key: '0-0-0-2'
+            },
+          ],
+        },
+        {
+          title: '0-0-1',
+          key: '0-0-1',
+          children: [{
+              title: '0-0-1-0',
+              key: '0-0-1-0'
+            },
+            {
+              title: '0-0-1-1',
+              key: '0-0-1-1'
+            },
+            {
+              title: '0-0-1-2',
+              key: '0-0-1-2'
+            },
+          ],
+        },
+        {
+          title: '0-0-2',
+          key: '0-0-2',
+        },
+      ],
+    },
+    {
+      title: '0-1',
+      key: '0-1',
+      children: [{
+          title: '0-1-0-0',
+          key: '0-1-0-0'
+        },
+        {
+          title: '0-1-0-1',
+          key: '0-1-0-1'
+        },
+        {
+          title: '0-1-0-2',
+          key: '0-1-0-2'
+        },
+      ],
+    },
+    {
+      title: '0-2',
+      key: '0-2',
+    },
+  ];
   export default {
     components: {
       IconFont
@@ -469,7 +517,6 @@
           disabled: i % 3 < 1
         });
       }
-
       const oriTargetKeys = mockData
         .filter(item => +item.key % 3 > 1)
         .map(item => item.key);
@@ -511,8 +558,6 @@
             }]
           }
         ],
-        treeExpandedKeys: [],
-        value: undefined,
         mockData,
         targetKeys: oriTargetKeys,
         selectedKeys: ["1", "4"],
@@ -528,6 +573,11 @@
         indeterminate: true,
         checkAll: false,
         plainOptions,
+        expandedKeys: ['0-0-0', '0-0-1'],
+        autoExpandParent: true,
+        checkedKeys: ['0-0-0'],
+        selectedKeysN: [],
+        treeData,
       };
     },
 
@@ -611,6 +661,16 @@
           indeterminate: false,
           checkAll: e.target.checked,
         });
+      },
+      onExpand(expandedKeys) {
+        this.expandedKeys = expandedKeys;
+        this.autoExpandParent = false;
+      },
+      onCheck(checkedKeys) {
+        this.checkedKeys = checkedKeys;
+      },
+      onSelect(selectedKeys, info) {
+        this.selectedKeys = selectedKeys;
       },
     }
   };
