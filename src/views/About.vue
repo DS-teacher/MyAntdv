@@ -214,7 +214,7 @@
           <a-space>
             表单组件：
             <a-form :form="form" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }" @submit="handleSubmit">
-              <a-form-item label="Note">
+              <a-form-item label="节点">
                 <a-input v-decorator="[
                     'note',
                     {
@@ -224,7 +224,7 @@
                     }
                   ]" />
               </a-form-item>
-              <a-form-item label="Gender">
+              <a-form-item label="性别">
                 <a-select v-decorator="[
                     'gender',
                     {
@@ -235,18 +235,18 @@
                         }
                       ]
                     }
-                  ]" placeholder="Select a option and change input text above">
+                  ]" placeholder="请选择">
                   <a-select-option value="male">
-                    male
+                    男
                   </a-select-option>
                   <a-select-option value="female">
-                    female
+                    女
                   </a-select-option>
                 </a-select>
               </a-form-item>
               <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
                 <a-button type="primary" html-type="submit">
-                  Submit
+                  提交
                 </a-button>
               </a-form-item>
             </a-form>
@@ -278,7 +278,7 @@
           <!-- 穿梭框组件 -->
           <a-sapce>
             穿梭框组件:
-            <a-transfer :data-source="mockData" :titles="['Source', 'Target']" :target-keys="targetKeys"
+            <a-transfer :data-source="mockData" :titles="['来源', '目标']" :target-keys="targetKeys"
               :selected-keys="selectedKeys" :render="item => item.title" :disabled="disabled"
               @selectChange="handleSelectChange" @scroll="handleScroll" />
             <a-switch un-checked-children="enabled" checked-children="disabled" :checked="disabled"
@@ -288,10 +288,10 @@
           <a-space>
             折叠面板组件:
             <a-collapse default-active-key="1" :expand-icon-position="right">
-              <a-collapse-panel key="1" header="This is panel header with arrow icon">
+              <a-collapse-panel key="1" header="带有图标">
                 <p>{{ text }}</p>
               </a-collapse-panel>
-              <a-collapse-panel key="2" header="This is panel header with no arrow icon" :show-arrow="false">
+              <a-collapse-panel key="2" header="不带图标" :show-arrow="false">
                 <p>{{ text }}</p>
               </a-collapse-panel>
             </a-collapse>
@@ -300,63 +300,58 @@
           <a-space>
             卡片组件：
             <a-card title="卡片组件" hoverable style="width: 300px">
-              <a slot="extra" href="#">more</a>
-              <p>card content</p>
-              <p>card content</p>
-              <p>card content</p>
+              <a slot="extra" href="#">更多</a>
+              这里是卡片组件，我是被秃头程序员写来凑字数的，你看我这么随意就写了三十六个字。
             </a-card>
           </a-space>
           <!-- 描述列表组件 -->
           <a-space>
             描述列表组件：
             <a-descriptions title="描述列表组件" bordered>
-              <a-descriptions-item label="UserName">
-                Zhou Maomao
+              <a-descriptions-item label="姓名">
+                董天宇
               </a-descriptions-item>
-              <a-descriptions-item label="Telephone">
-                1810000000
+              <a-descriptions-item label="电话">
+                18945056448
               </a-descriptions-item>
-              <a-descriptions-item label="Live">
-                Hangzhou, Zhejiang
+              <a-descriptions-item label="住址">
+                北京
               </a-descriptions-item>
-              <a-descriptions-item label="Remark">
-                empty
+              <a-descriptions-item label="备注">
+                公众号：EpicSky2018
               </a-descriptions-item>
-              <a-descriptions-item label="Address">
-                No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+              <a-descriptions-item label="具体住址">
+                北京用友政务
               </a-descriptions-item>
             </a-descriptions>
           </a-space>
           <!-- 气泡确认框组件 -->
           <a-space>
             气泡确认框组件：
-            <a-popconfirm title="Are you sure delete this task?" ok-text="Yes" cancel-text="No" @confirm="confirm"
+            <a-popconfirm title="确定删除吗？" ok-text="是" cancel-text="否" @confirm="confirm"
               @cancel="cancel">
-              <a href="#">Delete</a>
+              <a href="#">删除</a>
             </a-popconfirm>
           </a-space>
           <!-- 标签组件 -->
           <a-space>
             标签组件：
-            <a-tag>Tag 1</a-tag>
-            <a-tag><a href="/">Link</a></a-tag>
+            <a-tag>标签1</a-tag>
+            <a-tag><a href="/">链接标签</a></a-tag>
             <a-tag closable>
-              Tag 2
-            </a-tag>
-            <a-tag closable>
-              Prevent Default
+              可删除的标签
             </a-tag>
           </a-space>
           <!-- 警告提示组件 -->
           <a-space>
             警告提示组件：
-            <a-alert message="Success Tips" description="Detailed description and advices about successful copywriting."
+            <a-alert message="成功" description="这是成功提示"
               type="success" show-icon />
-            <a-alert message="Informational Notes"
-              description="Additional description and informations about copywriting." type="info" show-icon />
-            <a-alert message="Warning" description="This is a warning notice about copywriting." type="warning"
+            <a-alert message="提示"
+              description="这是信息提示" type="info" show-icon />
+            <a-alert message="警告" description="这是警告提示" type="warning"
               show-icon />
-            <a-alert message="Error" description="This is an error message about copywriting." type="error" show-icon />
+            <a-alert message="错误" description="这是错误提示" type="error" show-icon />
           </a-space>
           <!-- 抽屉组件 -->
           <a-space>
@@ -469,8 +464,8 @@
       for (let i = 0; i < 20; i++) {
         mockData.push({
           key: i.toString(),
-          title: `content${i + 1}`,
-          description: `description of content${i + 1}`,
+          title: `内容${i + 1}`,
+          description: `这是内容${i + 1}`,
           disabled: i % 3 < 1
         });
       }
