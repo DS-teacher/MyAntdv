@@ -2,9 +2,9 @@
   <a-locale-provider :locale="locale">
     <div id="app">
       <div id="nav" style="text-align: center">
-        <router-link to="/">Home</router-link>
+        <router-link to="/">首页</router-link>
         |
-        <router-link to="/about">About</router-link>
+        <router-link to="/about">组件页</router-link>
       </div>
       <router-view />
     </div>
