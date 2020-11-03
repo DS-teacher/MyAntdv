@@ -1,8 +1,12 @@
 <template>
   <a-layout id="components-layout-demo-top" class="layout">
     <a-layout-header>
-      <a-menu theme="dark" mode="horizontal" :defaultSelectedKeys="['2']"
-        style=" text-align: center; line-height: 64px">
+      <a-menu
+        theme="dark"
+        mode="horizontal"
+        :defaultSelectedKeys="['2']"
+        style=" text-align: center; line-height: 64px"
+      >
         <a-menu-item key="1">nav 1</a-menu-item>
         <a-menu-item key="2">nav 2</a-menu-item>
         <a-menu-item key="3">nav 3</a-menu-item>
@@ -166,10 +170,22 @@
           <!-- 分页组件 -->
           <a-space>
             分页组件：
-            <a-pagination show-quick-jumper :default-current="2" :total="500" :size="size" />
+            <a-pagination
+              show-quick-jumper
+              :default-current="2"
+              :total="500"
+              :size="size"
+            />
           </a-space>
           <a-space>
-            <a-pagination show-quick-jumper :default-current="2" :total="500" :size="size" disabled show-less-items />
+            <a-pagination
+              show-quick-jumper
+              :default-current="2"
+              :total="500"
+              :size="size"
+              disabled
+              show-less-items
+            />
           </a-space>
           <!-- 步骤条组件 -->
           <a-space>
@@ -194,10 +210,18 @@
           <!-- 多选组件 -->
           <a-space>
             多选组件：
-            <a-checkbox :indeterminate="indeterminate" :checked="checkAll" @change="onCheckAllChange">
+            <a-checkbox
+              :indeterminate="indeterminate"
+              :checked="checkAll"
+              @change="onCheckAllChange"
+            >
               全选
             </a-checkbox>
-            <a-checkbox-group v-model="checkedList" :options="plainOptions" @change="onChangeC" />
+            <a-checkbox-group
+              v-model="checkedList"
+              :options="plainOptions"
+              @change="onChangeC"
+            />
           </a-space>
           <!-- 级联选择组件 -->
           <a-space>
@@ -213,19 +237,27 @@
           <!-- 表单组件 -->
           <a-space>
             表单组件：
-            <a-form :form="form" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }" @submit="handleSubmit">
+            <a-form
+              :form="form"
+              :label-col="{ span: 5 }"
+              :wrapper-col="{ span: 12 }"
+              @submit="handleSubmit"
+            >
               <a-form-item label="节点">
-                <a-input v-decorator="[
+                <a-input
+                  v-decorator="[
                     'note',
                     {
                       rules: [
                         { required: true, message: 'Please input your note!' }
                       ]
                     }
-                  ]" />
+                  ]"
+                />
               </a-form-item>
               <a-form-item label="性别">
-                <a-select v-decorator="[
+                <a-select
+                  v-decorator="[
                     'gender',
                     {
                       rules: [
@@ -235,7 +267,9 @@
                         }
                       ]
                     }
-                  ]" placeholder="请选择">
+                  ]"
+                  placeholder="请选择"
+                >
                   <a-select-option value="male">
                     男
                   </a-select-option>
@@ -259,17 +293,36 @@
           <!-- 树选择组件 -->
           <a-space>
             树选择组件:
-            <a-tree v-model="checkedKeys" checkable :expanded-keys="expandedKeys" :auto-expand-parent="autoExpandParent"
-              :selected-keys="selectedKeysN" :tree-data="treeData" @expand="onExpand" @select="onSelect" />
+            <a-tree
+              v-model="checkedKeys"
+              checkable
+              :expanded-keys="expandedKeys"
+              :auto-expand-parent="autoExpandParent"
+              :selected-keys="selectedKeysN"
+              :tree-data="treeData"
+              @expand="onExpand"
+              @select="onSelect"
+            />
           </a-space>
           <!-- 穿梭框组件 -->
           <a-sapce>
             穿梭框组件:
-            <a-transfer :data-source="mockData" :titles="['来源', '目标']" :target-keys="targetKeys"
-              :selected-keys="selectedKeys" :render="item => item.title" :disabled="disabled"
-              @selectChange="handleSelectChange" @scroll="handleScroll" />
-            <a-switch un-checked-children="enabled" checked-children="disabled" :checked="disabled"
-              style="margin-top: 16px" />
+            <a-transfer
+              :data-source="mockData"
+              :titles="['来源', '目标']"
+              :target-keys="targetKeys"
+              :selected-keys="selectedKeys"
+              :render="item => item.title"
+              :disabled="disabled"
+              @selectChange="handleSelectChange"
+              @scroll="handleScroll"
+            />
+            <a-switch
+              un-checked-children="enabled"
+              checked-children="disabled"
+              :checked="disabled"
+              style="margin-top: 16px"
+            />
           </a-sapce>
           <!-- 折叠面板组件 -->
           <a-space>
@@ -315,7 +368,13 @@
           <!-- 气泡确认框组件 -->
           <a-space>
             气泡确认框组件：
-            <a-popconfirm title="确定删除吗？" ok-text="是" cancel-text="否" @confirm="confirm" @cancel="cancel">
+            <a-popconfirm
+              title="确定删除吗？"
+              ok-text="是"
+              cancel-text="否"
+              @confirm="confirm"
+              @cancel="cancel"
+            >
               <a href="#">删除</a>
             </a-popconfirm>
           </a-space>
@@ -331,15 +390,39 @@
           <!-- 警告提示组件 -->
           <a-space>
             警告提示组件：
-            <a-alert message="成功" description="这是成功提示" type="success" show-icon />
-            <a-alert message="提示" description="这是信息提示" type="info" show-icon />
-            <a-alert message="警告" description="这是警告提示" type="warning" show-icon />
-            <a-alert message="错误" description="这是错误提示" type="error" show-icon />
+            <a-alert
+              message="成功"
+              description="这是成功提示"
+              type="success"
+              show-icon
+            />
+            <a-alert
+              message="提示"
+              description="这是信息提示"
+              type="info"
+              show-icon
+            />
+            <a-alert
+              message="警告"
+              description="这是警告提示"
+              type="warning"
+              show-icon
+            />
+            <a-alert
+              message="错误"
+              description="这是错误提示"
+              type="error"
+              show-icon
+            />
           </a-space>
           <!-- 抽屉组件 -->
           <a-space>
             抽屉组件：
-            <a-radio-group style="margin-right: 8px" :default-value="placement" @change="onChange">
+            <a-radio-group
+              style="margin-right: 8px"
+              :default-value="placement"
+              @change="onChange"
+            >
               <a-radio value="top">
                 顶部
               </a-radio>
@@ -356,7 +439,13 @@
             <a-button type="primary" @click="showDrawer">
               打开抽屉
             </a-button>
-            <a-drawer title="抽屉组件标题" :placement="placement" :closable="false" :visible="visible" @close="onClose">
+            <a-drawer
+              title="抽屉组件标题"
+              :placement="placement"
+              :closable="false"
+              :visible="visible"
+              @close="onClose"
+            >
               这里是抽屉组件，我是被秃头程序员写来凑字数的，你看我这么随意就写了三十六个字。
             </a-drawer>
           </a-space>
@@ -389,8 +478,18 @@
                 增加一个
               </a-button>
             </div>
-            <a-tabs v-model="activeKey" hide-add type="editable-card" @edit="onEdit">
-              <a-tab-pane v-for="pane in panes" :key="pane.key" :tab="pane.title" :closable="pane.closable">
+            <a-tabs
+              v-model="activeKey"
+              hide-add
+              type="editable-card"
+              @edit="onEdit"
+            >
+              <a-tab-pane
+                v-for="pane in panes"
+                :key="pane.key"
+                :tab="pane.title"
+                :closable="pane.closable"
+              >
                 {{ pane.content }}
               </a-tab-pane>
             </a-tabs>
@@ -429,249 +528,263 @@
 </template>
 
 <script>
-  import {
-    Icon
-  } from "ant-design-vue";
+import { Icon } from "ant-design-vue";
 
-  const IconFont = Icon.createFromIconfontCN({
-    scriptUrl: "//at.alicdn.com/t/font_1389343_piwa5v5qoj.js"
-  });
-  const plainOptions = ['选项一', '选项二', '选项三'];
-  const defaultCheckedList = ['选项一', '选项三'];
-  const treeData = [{
-      title: '0-0',
-      key: '0-0',
-      children: [{
-          title: '0-0-0',
-          key: '0-0-0',
-          children: [{
-              title: '0-0-0-0',
-              key: '0-0-0-0'
-            },
-            {
-              title: '0-0-0-1',
-              key: '0-0-0-1'
-            },
-            {
-              title: '0-0-0-2',
-              key: '0-0-0-2'
-            },
-          ],
-        },
-        {
-          title: '0-0-1',
-          key: '0-0-1',
-          children: [{
-              title: '0-0-1-0',
-              key: '0-0-1-0'
-            },
-            {
-              title: '0-0-1-1',
-              key: '0-0-1-1'
-            },
-            {
-              title: '0-0-1-2',
-              key: '0-0-1-2'
-            },
-          ],
-        },
-        {
-          title: '0-0-2',
-          key: '0-0-2',
-        },
-      ],
-    },
-    {
-      title: '0-1',
-      key: '0-1',
-      children: [{
-          title: '0-1-0-0',
-          key: '0-1-0-0'
-        },
-        {
-          title: '0-1-0-1',
-          key: '0-1-0-1'
-        },
-        {
-          title: '0-1-0-2',
-          key: '0-1-0-2'
-        },
-      ],
-    },
-    {
-      title: '0-2',
-      key: '0-2',
-    },
-  ];
-  export default {
-    components: {
-      IconFont
-    },
-    data() {
-      const mockData = [];
-      for (let i = 0; i < 20; i++) {
-        mockData.push({
-          key: i.toString(),
-          title: `内容${i + 1}`,
-          description: `这是内容${i + 1}`,
-          disabled: i % 3 < 1
-        });
-      }
-      const oriTargetKeys = mockData
-        .filter(item => +item.key % 3 > 1)
-        .map(item => item.key);
-      const panes = [{
-          title: '页面当前效果',
-          content: '页面当前内容',
-          key: '1'
-        },
-        {
-          title: '页面二',
-          content: '页面当前内容',
-          key: '2'
-        },
-      ];
-      return {
-        size: "middle",
-        options: [{
-            value: "浙江",
-            label: "浙江",
-            children: [{
-              value: "杭州",
-              label: "杭州",
-              children: [{
-                value: "西湖",
-                label: "西湖"
-              }]
-            }]
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: "//at.alicdn.com/t/font_1389343_piwa5v5qoj.js"
+});
+const plainOptions = ["选项一", "选项二", "选项三"];
+const defaultCheckedList = ["选项一", "选项三"];
+const treeData = [
+  {
+    title: "0-0",
+    key: "0-0",
+    children: [
+      {
+        title: "0-0-0",
+        key: "0-0-0",
+        children: [
+          {
+            title: "0-0-0-0",
+            key: "0-0-0-0"
           },
           {
-            value: "江苏",
-            label: "江苏",
-            children: [{
+            title: "0-0-0-1",
+            key: "0-0-0-1"
+          },
+          {
+            title: "0-0-0-2",
+            key: "0-0-0-2"
+          }
+        ]
+      },
+      {
+        title: "0-0-1",
+        key: "0-0-1",
+        children: [
+          {
+            title: "0-0-1-0",
+            key: "0-0-1-0"
+          },
+          {
+            title: "0-0-1-1",
+            key: "0-0-1-1"
+          },
+          {
+            title: "0-0-1-2",
+            key: "0-0-1-2"
+          }
+        ]
+      },
+      {
+        title: "0-0-2",
+        key: "0-0-2"
+      }
+    ]
+  },
+  {
+    title: "0-1",
+    key: "0-1",
+    children: [
+      {
+        title: "0-1-0-0",
+        key: "0-1-0-0"
+      },
+      {
+        title: "0-1-0-1",
+        key: "0-1-0-1"
+      },
+      {
+        title: "0-1-0-2",
+        key: "0-1-0-2"
+      }
+    ]
+  },
+  {
+    title: "0-2",
+    key: "0-2"
+  }
+];
+export default {
+  components: {
+    IconFont
+  },
+  data() {
+    const mockData = [];
+    for (let i = 0; i < 20; i++) {
+      mockData.push({
+        key: i.toString(),
+        title: `内容${i + 1}`,
+        description: `这是内容${i + 1}`,
+        disabled: i % 3 < 1
+      });
+    }
+    const oriTargetKeys = mockData
+      .filter(item => +item.key % 3 > 1)
+      .map(item => item.key);
+    const panes = [
+      {
+        title: "页面当前效果",
+        content: "页面当前内容",
+        key: "1"
+      },
+      {
+        title: "页面二",
+        content: "页面当前内容",
+        key: "2"
+      }
+    ];
+    return {
+      size: "middle",
+      options: [
+        {
+          value: "浙江",
+          label: "浙江",
+          children: [
+            {
+              value: "杭州",
+              label: "杭州",
+              children: [
+                {
+                  value: "西湖",
+                  label: "西湖"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          value: "江苏",
+          label: "江苏",
+          children: [
+            {
               value: "南京",
               label: "南京",
-              children: [{
-                value: "中华门",
-                label: "中华门"
-              }]
-            }]
-          }
-        ],
-        mockData,
-        targetKeys: oriTargetKeys,
-        selectedKeys: ["1", "4"],
-        disabled: false,
-        text: `20201019 16:55 折叠面板组件`,
-        visible: false,
-        placement: 'left',
-        activeKey: panes[0].key,
-        panes,
-        newTabIndex: 0,
-        visibleM: false,
-        checkedList: defaultCheckedList,
-        indeterminate: true,
-        checkAll: false,
-        plainOptions,
-        expandedKeys: ['0-0-0', '0-0-1'],
-        autoExpandParent: true,
-        checkedKeys: ['0-0-0'],
-        selectedKeysN: [],
-        treeData,
-      };
-    },
-
-    methods: {
-      handleChange(nextTargetKeys, direction, moveKeys) {
-        this.targetKeys = nextTargetKeys;
-      },
-      handleSelectChange(sourceSelectedKeys, targetSelectedKeys) {
-        this.selectedKeys = [...sourceSelectedKeys, ...targetSelectedKeys];
-      },
-      handleDisable(disabled) {
-        this.disabled = disabled;
-      },
-      confirm(e) {
-        this.$message.success('选择：是');
-      },
-      cancel(e) {
-        this.$message.error('选择：否');
-      },
-      showDrawer() {
-        this.visible = true;
-      },
-      onClose() {
-        this.visible = false;
-      },
-      onChange(e) {
-        this.placement = e.target.value;
-      },
-      openNotificationWithIcon(type) {
-        this.$notification[type]({
-          message: '通知标题',
-          description: '这里是内容',
-        });
-      },
-      onEdit(targetKey, action) {
-        this[action](targetKey);
-      },
-      add() {
-        const panes = this.panes;
-        const activeKey = `${this.newTabIndex++}`;
-        panes.push({
-          title: `第${activeKey}个新标题`,
-          content: `第${activeKey}个新界面`,
-          key: activeKey,
-        });
-        this.panes = panes;
-        this.activeKey = activeKey;
-      },
-      remove(targetKey) {
-        let activeKey = this.activeKey;
-        let lastIndex;
-        this.panes.forEach((pane, i) => {
-          if (pane.key === targetKey) {
-            lastIndex = i - 1;
-          }
-        });
-        const panes = this.panes.filter(pane => pane.key !== targetKey);
-        if (panes.length && activeKey === targetKey) {
-          if (lastIndex >= 0) {
-            activeKey = panes[lastIndex].key;
-          } else {
-            activeKey = panes[0].key;
-          }
+              children: [
+                {
+                  value: "中华门",
+                  label: "中华门"
+                }
+              ]
+            }
+          ]
         }
-        this.panes = panes;
-        this.activeKey = activeKey;
-      },
-      showModal() {
-        this.visibleM = true;
-      },
-      handleOk(e) {
-        this.visibleM = false;
-      },
-      onChangeC(checkedList) {
-        this.indeterminate = !!checkedList.length && checkedList.length < plainOptions.length;
-        this.checkAll = checkedList.length === plainOptions.length;
-      },
-      onCheckAllChange(e) {
-        Object.assign(this, {
-          checkedList: e.target.checked ? plainOptions : [],
-          indeterminate: false,
-          checkAll: e.target.checked,
-        });
-      },
-      onExpand(expandedKeys) {
-        this.expandedKeys = expandedKeys;
-        this.autoExpandParent = false;
-      },
-      onCheck(checkedKeys) {
-        this.checkedKeys = checkedKeys;
-      },
-      onSelect(selectedKeys, info) {
-        this.selectedKeys = selectedKeys;
-      },
+      ],
+      mockData,
+      targetKeys: oriTargetKeys,
+      selectedKeys: ["1", "4"],
+      disabled: false,
+      text: `20201019 16:55 折叠面板组件`,
+      visible: false,
+      placement: "left",
+      activeKey: panes[0].key,
+      panes,
+      newTabIndex: 0,
+      visibleM: false,
+      checkedList: defaultCheckedList,
+      indeterminate: true,
+      checkAll: false,
+      plainOptions,
+      expandedKeys: ["0-0-0", "0-0-1"],
+      autoExpandParent: true,
+      checkedKeys: ["0-0-0"],
+      selectedKeysN: [],
+      treeData
+    };
+  },
+
+  methods: {
+    handleChange(nextTargetKeys, direction, moveKeys) {
+      this.targetKeys = nextTargetKeys;
+    },
+    handleSelectChange(sourceSelectedKeys, targetSelectedKeys) {
+      this.selectedKeys = [...sourceSelectedKeys, ...targetSelectedKeys];
+    },
+    handleDisable(disabled) {
+      this.disabled = disabled;
+    },
+    confirm(e) {
+      this.$message.success("选择：是");
+    },
+    cancel(e) {
+      this.$message.error("选择：否");
+    },
+    showDrawer() {
+      this.visible = true;
+    },
+    onClose() {
+      this.visible = false;
+    },
+    onChange(e) {
+      this.placement = e.target.value;
+    },
+    openNotificationWithIcon(type) {
+      this.$notification[type]({
+        message: "通知标题",
+        description: "这里是内容"
+      });
+    },
+    onEdit(targetKey, action) {
+      this[action](targetKey);
+    },
+    add() {
+      const panes = this.panes;
+      const activeKey = `${this.newTabIndex++}`;
+      panes.push({
+        title: `第${activeKey}个新标题`,
+        content: `第${activeKey}个新界面`,
+        key: activeKey
+      });
+      this.panes = panes;
+      this.activeKey = activeKey;
+    },
+    remove(targetKey) {
+      let activeKey = this.activeKey;
+      let lastIndex;
+      this.panes.forEach((pane, i) => {
+        if (pane.key === targetKey) {
+          lastIndex = i - 1;
+        }
+      });
+      const panes = this.panes.filter(pane => pane.key !== targetKey);
+      if (panes.length && activeKey === targetKey) {
+        if (lastIndex >= 0) {
+          activeKey = panes[lastIndex].key;
+        } else {
+          activeKey = panes[0].key;
+        }
+      }
+      this.panes = panes;
+      this.activeKey = activeKey;
+    },
+    showModal() {
+      this.visibleM = true;
+    },
+    handleOk(e) {
+      this.visibleM = false;
+    },
+    onChangeC(checkedList) {
+      this.indeterminate =
+        !!checkedList.length && checkedList.length < plainOptions.length;
+      this.checkAll = checkedList.length === plainOptions.length;
+    },
+    onCheckAllChange(e) {
+      Object.assign(this, {
+        checkedList: e.target.checked ? plainOptions : [],
+        indeterminate: false,
+        checkAll: e.target.checked
+      });
+    },
+    onExpand(expandedKeys) {
+      this.expandedKeys = expandedKeys;
+      this.autoExpandParent = false;
+    },
+    onCheck(checkedKeys) {
+      this.checkedKeys = checkedKeys;
+    },
+    onSelect(selectedKeys, info) {
+      this.selectedKeys = selectedKeys;
     }
-  };
+  }
+};
 </script>
